@@ -11,7 +11,7 @@ public class Main {
                 .configure()
                 .buildSessionFactory();
         EmployeeRepository employeeRepository = new EmployeeRepository(sessionFactory);
-        Employee employee = employeeRepository.get(1);
+        Employee employee = (Employee) employeeRepository.get(1);
         System.out.println(employee);
 
         Employee newEmployee = new Employee("Adam", "Adamski", LocalDate.of(1988, 11, 11));
