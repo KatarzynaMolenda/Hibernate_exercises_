@@ -1,43 +1,41 @@
 import org.hibernate.Session;
-import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
-public class EmployeeRepository {
+public class DepartmentRepository {
     private SessionFactory sessionFactory;
 
-    public EmployeeRepository(SessionFactory sessionFactory) {
+    public DepartmentRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public Employee get(int id) {
+    public Department get(int id) {
         Session session = sessionFactory.openSession();
-        Employee employee = session.get(Employee.class, id);
+        Department department = session.get(Department.class, id);
         session.close();
-        return employee;
+        return department;
     }
 
-    public void save(Employee employee) {
+    public void save(Department department) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(employee);
+        session.save(department);
         transaction.commit();
         session.close();
     }
 
-    public void update(Employee employee) {
+    public void update(Department department) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(employee);
+        session.update(department);
         transaction.commit();
         session.close();
     }
 
-    public void delete(Employee employee) {
+    public void delete(Department department) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(employee);
+        session.delete(department);
         transaction.commit();
         session.close();
     }
@@ -45,4 +43,5 @@ public class EmployeeRepository {
     public void delete(int id) {
         delete(get(id));
     }
+
 }
